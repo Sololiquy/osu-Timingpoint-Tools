@@ -2,13 +2,8 @@ import java.lang.Math;
 import java.io.*;
 
 public class TimingPointTools {
-    int Size;
-
-    // osutiming point element
     double Offset;
     int intOffset;
-    int SliderVelocity;
-    int BPM;
 
     public TimingPointTools() {
         try {
@@ -26,6 +21,10 @@ public class TimingPointTools {
 
             int lines = 0;
             int i = 0;
+            String previousVolume = "100";
+            String previousSample = "0";
+            String previousType = "1";
+            String previousInheret = "1";
 
             while (linecheck.readLine() != null)
                 lines++;
@@ -41,6 +40,22 @@ public class TimingPointTools {
                 Offset = Math.floor(Offset);
                 intOffset = (int) Offset;
                 lineTimingPoint[0] = Integer.toString(intOffset);
+
+                if (lineTimingPoint[6].equals("0")) {
+                    if (lineTimingPoint[5].equals("100")) {
+                        lineTimingPoint[5] = previousVolume;
+                    }
+                    if (lineTimingPoint[4].equals("0")) {
+                        lineTimingPoint[4] = previousSample;
+                    }
+                    if (lineTimingPoint[3].equals("1")) {
+                        lineTimingPoint[3] = previousType;
+                    }
+                    previousVolume = lineTimingPoint[5];
+                    previousSample = lineTimingPoint[4];
+                    previousType = lineTimingPoint[3];
+                }
+
                 String temp = "";
                 for (int j = 0; j < 8; j++) {
                     temp = temp + lineTimingPoint[j];
