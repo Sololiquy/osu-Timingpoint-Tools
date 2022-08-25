@@ -1,6 +1,8 @@
 import java.lang.Math;
 import java.io.*;
 
+// INI UDAH DI EDIT SAMA ALFATH
+
 public class TimingPointTools {
     double Offset;
     int intOffset;
